@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智豆成语接龙 - 快乐学成语</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .bounce-animation {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% {
+                transform: translate3d(0,0,0);
+            }
+            40%, 43% {
+                transform: translate3d(0,-8px,0);
+            }
+            70% {
+                transform: translate3d(0,-4px,0);
+            }
+            90% {
+                transform: translate3d(0,-2px,0);
+            }
+        }
+        
+        .pulse-ring {
+            animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.33);
+            }
+            80%, 100% {
+                opacity: 0;
+            }
+        }
+        
+        .category-button {
+            background: linear-gradient(45deg, #ff6b6b, #ffa726);
+            transition: all 0.3s ease;
+        }
+        
+        .category-button:hover {
+            background: linear-gradient(45deg, #ff5252, #ff9800);
+            transform: scale(1.05);
+        }
+        
+        .search-container {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 min-h-screen">
+    <!-- Header -->
+    <header class="gradient-bg shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg bounce-animation">
+                        <i class="fas fa-graduation-cap text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-white">智豆成语接龙</h1>
+                        <p class="text-blue-100 text-sm">快乐学成语，智慧伴成长</p>
+                    </div>
+                </div>
+                
+                <!-- Navigation -->
+                <nav class="hidden md:flex items-center space-x-6">
+                    <a href="#" class="text-white hover:text-yellow-300 transition-colors font-medium flex items-center space-x-1">
+                        <i class="fas fa-home"></i>
+                        <span>首页</span>
+                    </a>
+                    <a href="#" class="text-white hover:text-yellow-300 transition-colors font-medium flex items-center space-x-1">
+                        <i class="fas fa-search"></i>
+                        <span>接语查提案</span>
+                    </a>
+                    <a href="#" class="text-white hover:text-yellow-300 transition-colors font-medium flex items-center space-x-1">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>小程序</span>
+                    </a>
+                </nav>
+                
+                <!-- Mobile menu button -->
+                <button class="md:hidden text-white">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Search Section -->
+        <section class="text-center mb-12">
+            <div class="search-container rounded-3xl p-8 shadow-xl mb-8">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                    <i class="fas fa-book-open text-purple-600 mr-3"></i>
+                    成语接龙查询
+                </h2>
+                <p class="text-gray-600 mb-6 text-lg">新功能：成语接龙智能输入、按例查真读、提案试调整</p>
+                
+                <!-- Search Input -->
+                <div class="max-w-2xl mx-auto relative">
+                    <div class="relative">
+                        <input 
+                            type="text" 
+                            placeholder="输入成语、汉字、拼音搜索..."
+                            class="w-full px-6 py-4 text-lg rounded-full border-0 shadow-lg focus:outline-none focus:ring-4 focus:ring-purple-300 transition-all"
+                        >
+                        <button class="absolute right-2 top-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-2 rounded-full hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg">
+                            <i class="fas fa-search mr-2"></i>
+                            搜索
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Special Feature Button -->
+            <div class="relative inline-block">
+                <div class="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-2 py-1 rounded-full animate-pulse">
+                    新功能
+                </div>
+                <button class="bg-gradient-to-r from-green-400 to-blue-500 text-white px-8 py-4 rounded-full text-lg font-bold shadow-xl hover:from-green-500 hover:to-blue-600 transition-all transform hover:scale-105">
+                    <i class="fas fa-magic mr-2"></i>
+                    成语接龙神器
+                </button>
+            </div>
+        </section>
+
+        <!-- Navigation Categories -->
+        <section class="mb-12">
+            <div class="bg-white rounded-3xl shadow-xl p-8">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <i class="fas fa-compass text-orange-500 mr-3"></i>
+                    成语导航
+                </h3>
+                
+                <div class="space-y-6">
+                    <!-- Structure Categories -->
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-700 mb-3 flex items-center">
+                            <i class="fas fa-building text-blue-500 mr-2"></i>
+                            结构:
+                        </h4>
+                        <div class="flex flex-wrap gap-3">
+                            <button class="bg-gradient-to-r from-blue-400 to-purple-500 text-white px-4 py-2 rounded-full hover:from-blue-500 hover:to-purple-600 transition-all shadow-md">AABB</button>
+                            <button class="bg-gradient-to-r from-green-400 to-blue-500 text-white px-4 py-2 rounded-full hover:from-green-500 hover:to-blue-600 transition-all shadow-md">ABAC</button>
+                            <button class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-4 py-2 rounded-full hover:from-yellow-500 hover:to-orange-600 transition-all shadow-md">ABAB</button>
+                            <button class="bg-gradient-to-r from-pink-400 to-red-500 text-white px-4 py-2 rounded-full hover:from-pink-500 hover:to-red-600 transition-all shadow-md">ABAC</button>
+                            <button class="bg-gradient-to-r from-indigo-400 to-purple-500 text-white px-4 py-2 rounded-full hover:from-indigo-500 hover:to-purple-600 transition-all shadow-md">ABCB</button>
+                            <button class="bg-gradient-to-r from-teal-400 to-green-500 text-white px-4 py-2 rounded-full hover:from-teal-500 hover:to-green-600 transition-all shadow-md">ABCA</button>
+                            <button class="bg-gradient-to-r from-orange-400 to-pink-500 text-white px-4 py-2 rounded-full hover:from-orange-500 hover:to-pink-600 transition-all shadow-md">ABBC</button>
+                            <button class="bg-gradient-to-r from-cyan-400 to-blue-500 text-white px-4 py-2 rounded-full hover:from-cyan-500 hover:to-blue-600 transition-all shadow-md">ABCC</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Character Count -->
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-700 mb-3 flex items-center">
+                            <i class="fas fa-sort-numeric-up text-green-500 mr-2"></i>
+                            字数:
+                        </h4>
+                        <div class="flex flex-wrap gap-3">
+                            <button class="bg-gradient-to-r from-emerald-400 to-teal-500 text-white px-4 py-2 rounded-full hover:from-emerald-500 hover:to-teal-600 transition-all shadow-md">春天</button>
+                            <button class="bg-gradient-to-r from-lime-400 to-green-500 text-white px-4 py-2 rounded-full hover:from-lime-500 hover:to-green-600 transition-all shadow-md">夏天</button>
+                            <button class="bg-gradient-to-r from-amber-400 to-orange-500 text-white px-4 py-2 rounded-full hover:from-amber-500 hover:to-orange-600 transition-all shadow-md">秋天</button>
+                            <button class="bg-gradient-to-r from-sky-400 to-blue-500 text-white px-4 py-2 rounded-full hover:from-sky-500 hover:to-blue-600 transition-all shadow-md">冬天</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Radicals -->
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-700 mb-3 flex items-center">
+                            <i class="fas fa-language text-purple-500 mr-2"></i>
+                            生肖:
+                        </h4>
+                        <div class="flex flex-wrap gap-3">
+                            <button class="bg-gradient-to-r from-red-400 to-pink-500 text-white px-4 py-2 rounded-full hover:from-red-500 hover:to-pink-600 transition-all shadow-md">鼠</button>
+                            <button class="bg-gradient-to-r from-orange-400 to-red-500 text-white px-4 py-2 rounded-full hover:from-orange-500 hover:to-red-600 transition-all shadow-md">牛</button>
+                            <button class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-4 py-2 rounded-full hover:from-yellow-500 hover:to-orange-600 transition-all shadow-md">虎</button>
+                            <button class="bg-gradient-to-r from-green-400 to-teal-500 text-white px-4 py-2 rounded-full hover:from-green-500 hover:to-teal-600 transition-all shadow-md">兔</button>
+                            <button class="bg-gradient-to-r from-blue-400 to-indigo-500 text-white px-4 py-2 rounded-full hover:from-blue-500 hover:to-indigo-600 transition-all shadow-md">龙</button>
+                            <button class="bg-gradient-to-r from-purple-400 to-pink-500 text-white px-4 py-2 rounded-full hover:from-purple-500 hover:to-pink-600 transition-all shadow-md">蛇</button>
+                            <button class="bg-gradient-to-r from-indigo-400 to-purple-500 text-white px-4 py-2 rounded-full hover:from-indigo-500 hover:to-purple-600 transition-all shadow-md">马</button>
+                            <button class="bg-gradient-to-r from-pink-400 to-red-500 text-white px-4 py-2 rounded-full hover:from-pink-500 hover:to-red-600 transition-all shadow-md">羊</button>
+                            <button class="bg-gradient-to-r from-teal-400 to-green-500 text-white px-4 py-2 rounded-full hover:from-teal-500 hover:to-green-600 transition-all shadow-md">猴</button>
+                            <button class="bg-gradient-to-r from-cyan-400 to-blue-500 text-white px-4 py-2 rounded-full hover:from-cyan-500 hover:to-blue-600 transition-all shadow-md">鸡</button>
+                            <button class="bg-gradient-to-r from-violet-400 to-purple-500 text-white px-4 py-2 rounded-full hover:from-violet-500 hover:to-purple-600 transition-all shadow-md">狗</button>
+                            <button class="bg-gradient-to-r from-rose-400 to-pink-500 text-white px-4 py-2 rounded-full hover:from-rose-500 hover:to-pink-600 transition-all shadow-md">猪</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Numbers -->
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-700 mb-3 flex items-center">
+                            <i class="fas fa-hashtag text-red-500 mr-2"></i>
+                            数字:
+                        </h4>
+                        <div class="flex flex-wrap gap-3">
+                            <button class="bg-gradient-to-r from-red-400 to-orange-500 text-white px-4 py-2 rounded-full hover:from-red-500 hover:to-orange-600 transition-all shadow-md">一</button>
+                            <button class="bg-gradient-to-r from-orange-400 to-yellow-500 text-white px-4 py-2 rounded-full hover:from-orange-500 hover:to-yellow-600 transition-all shadow-md">二</button>
+                            <button class="bg-gradient-to-r from-yellow-400 to-green-500 text-white px-4 py-2 rounded-full hover:from-yellow-500 hover:to-green-600 transition-all shadow-md">三</button>
+                            <button class="bg-gradient-to-r from-green-400 to-blue-500 text-white px-4 py-2 rounded-full hover:from-green-500 hover:to-blue-600 transition-all shadow-md">四</button>
+                            <button class="bg-gradient-to-r from-blue-400 to-purple-500 text-white px-4 py-2 rounded-full hover:from-blue-500 hover:to-purple-600 transition-all shadow-md">五</button>
+                            <button class="bg-gradient-to-r from-purple-400 to-pink-500 text-white px-4 py-2 rounded-full hover:from-purple-500 hover:to-pink-600 transition-all shadow-md">六</button>
+                            <button class="bg-gradient-to-r from-pink-400 to-red-500 text-white px-4 py-2 rounded-full hover:from-pink-500 hover:to-red-600 transition-all shadow-md">七</button>
+                            <button class="bg-gradient-to-r from-indigo-400 to-blue-500 text-white px-4 py-2 rounded-full hover:from-indigo-500 hover:to-blue-600 transition-all shadow-md">八</button>
+                            <button class="bg-gradient-to-r from-teal-400 to-green-500 text-white px-4 py-2 rounded-full hover:from-teal-500 hover:to-green-600 transition-all shadow-md">九</button>
+                            <button class="bg-gradient-to-r from-cyan-400 to-teal-500 text-white px-4 py-2 rounded-full hover:from-cyan-500 hover:to-teal-600 transition-all shadow-md">十</button>
+                            <button class="bg-gradient-to-r from-violet-400 to-indigo-500 text-white px-4 py-2 rounded-full hover:from-violet-500 hover:to-indigo-600 transition-all shadow-md">百</button>
+                            <button class="bg-gradient-to-r from-emerald-400 to-cyan-500 text-white px-4 py-2 rounded-full hover:from-emerald-500 hover:to-cyan-600 transition-all shadow-md">千</button>
+                            <button class="bg-gradient-to-r from-lime-400 to-emerald-500 text-white px-4 py-2 rounded-full hover:from-lime-500 hover:to-emerald-600 transition-all shadow-md">万</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Colors -->
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-700 mb-3 flex items-center">
+                            <i class="fas fa-palette text-pink-500 mr-2"></i>
+                            颜色:
+                        </h4>
+                        <div class="flex flex-wrap gap-3">
+                            <button class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-4 py-2 rounded-full hover:from-red-600 hover:to-pink-600 transition-all shadow-md">红</button>
+                            <button class="bg-gradient-to-r from-orange-500 to-yellow-500 text-white px-4 py-2 rounded-full hover:from-orange-600 hover:to-yellow-600 transition-all shadow-md">黄</button>
+                            <button class="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-full hover:from-green-600 hover:to-emerald-600 transition-all shadow-md">绿</button>
+                            <button class="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-4 py-2 rounded-full hover:from-blue-600 hover:to-cyan-600 transition-all shadow-md">蓝</button>
+                            <button class="bg-gradient-to-r from-purple-500 to-violet-500 text-white px-4 py-2 rounded-full hover:from-purple-600 hover:to-violet-600 transition-all shadow-md">紫</button>
+                            <button class="bg-gradient-to-r from-gray-500 to-gray-600 text-white px-4 py-2 rounded-full hover:from-gray-600 hover:to-gray-700 transition-all shadow-md">黑</button>
+                            <button class="bg-gradient-to-r from-gray-200 to-gray-300 text-gray-800 px-4 py-2 rounded-full hover:from-gray-300 hover:to-gray-400 transition-all shadow-md">白</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Natural Elements -->
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-700 mb-3 flex items-center">
+                            <i class="fas fa-leaf text-green-500 mr-2"></i>
+                            自然:
+                        </h4>
+                        <div class="flex flex-wrap gap-3">
+                            <button class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-4 py-2 rounded-full hover:from-yellow-500 hover:to-orange-600 transition-all shadow-md">花</button>
+                            <button class="bg-gradient-to-r from-green-400 to-emerald-500 text-white px-4 py-2 rounded-full hover:from-green-500 hover:to-emerald-600 transition-all shadow-md">草</button>
+                            <button class="bg-gradient-to-r from-green-500 to-teal-500 text-white px-4 py-2 rounded-full hover:from-green-600 hover:to-teal-600 transition-all shadow-md">树</button>
+                            <button class="bg-gradient-to-r from-brown-400 to-orange-500 text-white px-4 py-2 rounded-full hover:from-brown-500 hover:to-orange-600 transition-all shadow-md">木</button>
+                            <button class="bg-gradient-to-r from-green-400 to-lime-500 text-white px-4 py-2 rounded-full hover:from-green-500 hover:to-lime-600 transition-all shadow-md">竹</button>
+                            <button class="bg-gradient-to-r from-emerald-400 to-green-500 text-white px-4 py-2 rounded-full hover:from-emerald-500 hover:to-green-600 transition-all shadow-md">月</button>
+                            <button class="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-4 py-2 rounded-full hover:from-yellow-500 hover:to-amber-600 transition-all shadow-md">日</button>
+                            <button class="bg-gradient-to-r from-purple-400 to-indigo-500 text-white px-4 py-2 rounded-full hover:from-purple-500 hover:to-indigo-600 transition-all shadow-md">山</button>
+                            <button class="bg-gradient-to-r from-blue-400 to-cyan-500 text-white px-4 py-2 rounded-full hover:from-blue-500 hover:to-cyan-600 transition-all shadow-md">水</button>
+                            <button class="bg-gradient-to-r from-gray-400 to-slate-500 text-white px-4 py-2 rounded-full hover:from-gray-500 hover:to-slate-600 transition-all shadow-md">石</button>
+                            <button class="bg-gradient-to-r from-amber-400 to-yellow-500 text-white px-4 py-2 rounded-full hover:from-amber-500 hover:to-yellow-600 transition-all shadow-md">金</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Animals -->
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-700 mb-3 flex items-center">
+                            <i class="fas fa-paw text-orange-500 mr-2"></i>
+                            动物:
+                        </h4>
+                        <div class="flex flex-wrap gap-3">
+                            <button class="bg-gradient-to-r from-orange-400 to-red-500 text-white px-4 py-2 rounded-full hover:from-orange-500 hover:to-red-600 transition-all shadow-md">虎</button>
+                            <button class="bg-gradient-to-r from-green-400 to-emerald-500 text-white px-4 py-2 rounded-full hover:from-green-500 hover:to-emerald-600 transition-all shadow-md">龙</button>
+                            <button class="bg-gradient-to-r from-pink-400 to-rose-500 text-white px-4 py-2 rounded-full hover:from-pink-500 hover:to-rose-600 transition-all shadow-md">凤</button>
+                            <button class="bg-gradient-to-r from-blue-400 to-cyan-500 text-white px-4 py-2 rounded-full hover:from-blue-500 hover:to-cyan-600 transition-all shadow-md">鱼</button>
+                            <button class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-4 py-2 rounded-full hover:from-yellow-500 hover:to-orange-600 transition-all shadow-md">鸟</button>
+                            <button class="bg-gradient-to-r from-purple-400 to-indigo-500 text-white px-4 py-2 rounded-full hover:from-purple-500 hover:to-indigo-600 transition-all shadow-md">象</button>
+                            <button class="bg-gradient-to-r from-teal-400 to-green-500 text-white px-4 py-2 rounded-full hover:from-teal-500 hover:to-green-600 transition-all shadow-md">狮</button>
+                            <button class="bg-gradient-to-r from-indigo-400 to-blue-500 text-white px-4 py-2 rounded-full hover:from-indigo-500 hover:to-blue-600 transition-all shadow-md">豹</button>
+                            <button class="bg-gradient-to-r from-emerald-400 to-teal-500 text-white px-4 py-2 rounded-full hover:from-emerald-500 hover:to-teal-600 transition-all shadow-md">鹿</button>
+                            <button class="bg-gradient-to-r from-amber-400 to-orange-500 text-white px-4 py-2 rounded-full hover:from-amber-500 hover:to-orange-600 transition-all shadow-md">熊</button>
+                            <button class="bg-gradient-to-r from-lime-400 to-green-500 text-white px-4 py-2 rounded-full hover:from-lime-500 hover:to-green-600 transition-all shadow-md">兔</button>
+                            <button class="bg-gradient-to-r from-sky-400 to-blue-500 text-white px-4 py-2 rounded-full hover:from-sky-500 hover:to-blue-600 transition-all shadow-md">鹰</button>
+                            <button class="bg-gradient-to-r from-rose-400 to-pink-500 text-white px-4 py-2 rounded-full hover:from-rose-500 hover:to-pink-600 transition-all shadow-md">狼</button>
+                            <button class="bg-gradient-to-r from-violet-400 to-purple-500 text-white px-4 py-2 rounded-full hover:from-violet-500 hover:to-purple-600 transition-all shadow-md">蛇</button>
+                            <button class="bg-gradient-to-r from-cyan-400 to-teal-500 text-white px-4 py-2 rounded-full hover:from-cyan-500 hover:to-teal-600 transition-all shadow-md">蟹</button>
+                            <button class="bg-gradient-to-r from-orange-400 to-red-500 text-white px-4 py-2 rounded-full hover:from-orange-500 hover:to-red-600 transition-all shadow-md">虾</button>
+                            <button class="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-4 py-2 rounded-full hover:from-yellow-500 hover:to-amber-600 transition-all shadow-md">蜂</button>
+                            <button class="bg-gradient-to-r from-green-400 to-emerald-500 text-white px-4 py-2 rounded-full hover:from-green-500 hover:to-emerald-600 transition-all shadow-md">蚂蚱</button>
+                            <button class="bg-gradient-to-r from-blue-400 to-indigo-500 text-white px-4 py-2 rounded-full hover:from-blue-500 hover:to-indigo-600 transition-all shadow-md">蝴蝶</button>
+                            <button class="bg-gradient-to-r from-purple-400 to-pink-500 text-white px-4 py-2 rounded-full hover:from-purple-500 hover:to-pink-600 transition-all shadow-md">蜻蜓</button>
+                            <button class="bg-gradient-to-r from-teal-400 to-cyan-500 text-white px-4 py-2 rounded-full hover:from-teal-500 hover:to-cyan-600 transition-all shadow-md">蚊子</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Weather -->
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-700 mb-3 flex items-center">
+                            <i class="fas fa-cloud-sun text-blue-500 mr-2"></i>
+                            天气:
+                        </h4>
+                        <div class="flex flex-wrap gap-3">
+                            <button class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-4 py-2 rounded-full hover:from-yellow-500 hover:to-orange-600 transition-all shadow-md">晴</button>
+                            <button class="bg-gradient-to-r from-blue-400 to-cyan-500 text-white px-4 py-2 rounded-full hover:from-blue-500 hover:to-cyan-600 transition-all shadow-md">雨</button>
+                            <button class="bg-gradient-to-r from-gray-400 to-blue-500 text-white px-4 py-2 rounded-full hover:from-gray-500 hover:to-blue-600 transition-all shadow-md">雪</button>
+                            <button class="bg-gradient-to-r from-purple-400 to-indigo-500 text-white px-4 py-2 rounded-full hover:from-purple-500 hover:to-indigo-600 transition-all shadow-md">雷</button>
+                            <button class="bg-gradient-to-r from-cyan-400 to-blue-500 text-white px-4 py-2 rounded-full hover:from-cyan-500 hover:to-blue-600 transition-all shadow-md">冰</button>
+                            <button class="bg-gradient-to-r from-green-400 to-teal-500 text-white px-4 py-2 rounded-full hover:from-green-500 hover:to-teal-600 transition-all shadow-md">风</button>
+                            <button class="bg-gradient-to-r from-orange-400 to-red-500 text-white px-4 py-2 rounded-full hover:from-orange-500 hover:to-red-600 transition-all shadow-md">雾</button>
+                            <button class="bg-gradient-to-r from-indigo-400 to-purple-500 text-white px-4 py-2 rounded-full hover:from-indigo-500 hover:to-purple-600 transition-all shadow-md">霜</button>
+                            <button class="bg-gradient-to-r from-teal-400 to-green-500 text-white px-4 py-2 rounded-full hover:from-teal-500 hover:to-green-600 transition-all shadow-md">露</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Emotions -->
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-700 mb-3 flex items-center">
+                            <i class="fas fa-heart text-red-500 mr-2"></i>
+                            心情:
+                        </h4>
+                        <div class="flex flex-wrap gap-3">
+                            <button class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-4 py-2 rounded-full hover:from-yellow-500 hover:to-orange-600 transition-all shadow-md">喜</button>
+                            <button class="bg-gradient-to-r from-red-400 to-pink-500 text-white px-4 py-2 rounded-full hover:from-red-500 hover:to-pink-600 transition-all shadow-md">怒</button>
+                            <button class="bg-gradient-to-r from-blue-400 to-indigo-500 text-white px-4 py-2 rounded-full hover:from-blue-500 hover:to-indigo-600 transition-all shadow-md">哀</button>
+                            <button class="bg-gradient-to-r from-green-400 to-teal-500 text-white px-4 py-2 rounded-full hover:from-green-500 hover:to-teal-600 transition-all shadow-md">乐</button>
+                            <button class="bg-gradient-to-r from-purple-400 to-violet-500 text-white px-4 py-2 rounded-full hover:from-purple-500 hover:to-violet-600 transition-all shadow-md">爱</button>
+                            <button class="bg-gradient-to-r from-pink-400 to-rose-500 text-white px-4 py-2 rounded-full hover:from-pink-500 hover:to-rose-600 transition-all shadow-md">恨</button>
+                            <button class="bg-gradient-to-r from-orange-400 to-yellow-500 text-white px-4 py-2 rounded-full hover:from-orange-500 hover:to-yellow-600 transition-all shadow-md">惊</button>
+                            <button class="bg-gradient-to-r from-indigo-400 to-blue-500 text-white px-4 py-2 rounded-full hover:from-indigo-500 hover:to-blue-600 transition-all shadow-md">恐</button>
+                            <button class="bg-gradient-to-r from-teal-400 to-cyan-500 text-white px-4 py-2 rounded-full hover:from-teal-500 hover:to-cyan-600 transition-all shadow-md">忧</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Idioms Section -->
+        <section class="mb-12">
+            <div class="bg-white rounded-3xl shadow-xl p-8">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <i class="fas fa-clock text-green-500 mr-3"></i>
+                    最近查询的成语接龙
+                </h3>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    <div class="bg-gradient-to-br from-blue-100 to-purple-100 p-4 rounded-2xl card-hover cursor-pointer border-2 border-transparent hover:border-blue-300">
+                        <div class="text-center">
+                            <i class="fas fa-star text-yellow-500 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">下笔如神</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-green-100 to-emerald-100 p-4 rounded-2xl card-hover cursor-pointer border-2 border-transparent hover:border-green-300">
+                        <div class="text-center">
+                            <i class="fas fa-globe text-green-500 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">天翻地覆</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-yellow-100 to-orange-100 p-4 rounded-2xl card-hover cursor-pointer border-2 border-transparent hover:border-yellow-300">
+                        <div class="text-center">
+                            <i class="fas fa-heart text-red-500 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">坚若磐石</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-pink-100 to-rose-100 p-4 rounded-2xl card-hover cursor-pointer border-2 border-transparent hover:border-pink-300">
+                        <div class="text-center">
+                            <i class="fas fa-fire text-orange-500 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">群雄逐鹿</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-purple-100 to-indigo-100 p-4 rounded-2xl card-hover cursor-pointer border-2 border-transparent hover:border-purple-300">
+                        <div class="text-center">
+                            <i class="fas fa-mountain text-brown-500 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">天翻地覆</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-teal-100 to-cyan-100 p-4 rounded-2xl card-hover cursor-pointer border-2 border-transparent hover:border-teal-300">
+                        <div class="text-center">
+                            <i class="fas fa-lightbulb text-yellow-500 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">放慢五星</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-orange-100 to-red-100 p-4 rounded-2xl card-hover cursor-pointer border-2 border-transparent hover:border-orange-300">
+                        <div class="text-center">
+                            <i class="fas fa-leaf text-green-500 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">析明联想</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-indigo-100 to-blue-100 p-4 rounded-2xl card-hover cursor-pointer border-2 border-transparent hover:border-indigo-300">
+                        <div class="text-center">
+                            <i class="fas fa-puzzle-piece text-purple-500 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">析明练谈</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-emerald-100 to-green-100 p-4 rounded-2xl card-hover cursor-pointer border-2 border-transparent hover:border-emerald-300">
+                        <div class="text-center">
+                            <i class="fas fa-seedling text-green-600 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">新关守陪</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-violet-100 to-purple-100 p-4 rounded-2xl card-hover cursor-pointer border-2 border-transparent hover:border-violet-300">
+                        <div class="text-center">
+                            <i class="fas fa-gem text-purple-600 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">深锐之谈</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-amber-100 to-yellow-100 p-4 rounded-2xl card-hover cursor-pointer border-2 border-transparent hover:border-amber-300">
+                        <div class="text-center">
+                            <i class="fas fa-sun text-yellow-600 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">曲肱而枕</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-rose-100 to-pink-100 p-4 rounded-2xl card-hover cursor-pointer border-2 border-transparent hover:border-rose-300">
+                        <div class="text-center">
+                            <i class="fas fa-music text-pink-600 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">深锐新谈</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-sky-100 to-blue-100 p-4 rounded-2xl card-hover cursor-pointer border-2 border-transparent hover:border-sky-300">
+                        <div class="text-center">
+                            <i class="fas fa-rocket text-blue-600 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">少见则诡</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-lime-100 to-green-100 p-4 rounded-2xl card-hover cursor-pointer border-2 border-transparent hover:border-lime-300">
+                        <div class="text-center">
+                            <i class="fas fa-tree text-green-600 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">科近若远</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-red-100 to-orange-100 p-4 rounded-2xl card-hover cursor-pointer border-2 border-transparent hover:border-red-300">
+                        <div class="text-center">
+                            <i class="fas fa-crown text-red-600 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">额间蜂穴</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-cyan-100 to-teal-100 p-4 rounded-2xl card-hover cursor-pointer border-2 border-transparent hover:border-cyan-300">
+                        <div class="text-center">
+                            <i class="fas fa-fish text-cyan-600 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">科教若神</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-violet-100 to-indigo-100 p-4 rounded-2xl card-hover cursor-pointer border-2 border-transparent hover:border-violet-300">
+                        <div class="text-center">
+                            <i class="fas fa-magic text-violet-600 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">科教制胜</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-emerald-100 to-teal-100 p-4 rounded-2xl card-hover cursor-pointer border-2 border-transparent hover:border-emerald-300">
+                        <div class="text-center">
+                            <i class="fas fa-butterfly text-emerald-600 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">斗转星移</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-orange-100 to-amber-100 p-4 rounded-2xl card-hover cursor-pointer border-2 border-transparent hover:border-orange-300">
+                        <div class="text-center">
+                            <i class="fas fa-trophy text-amber-600 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">斗智斗勇</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-pink-100 to-rose-100 p-4 rounded-2xl card-hover cursor-pointer border-2 border-transparent hover:border-pink-300">
+                        <div class="text-center">
+                            <i class="fas fa-feather text-pink-600 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">斗智之雄</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-blue-100 to-cyan-100 p-4 rounded-2xl card-hover cursor-pointer border-2 border-transparent hover:border-blue-300">
+                        <div class="text-center">
+                            <i class="fas fa-water text-cyan-600 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">斗水活眼</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-purple-100 to-pink-100 p-4 rounded-2xl card-hover cursor-pointer border-2 border-transparent hover:border-purple-300">
+                        <div class="text-center">
+                            <i class="fas fa-dove text-purple-600 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">斗升之禄</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-green-100 to-lime-100 p-4 rounded-2xl card-hover cursor-pointer border-2 border-transparent hover:border-green-300">
+                        <div class="text-center">
+                            <i class="fas fa-smile text-lime-600 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">现不拔锚</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-yellow-100 to-amber-100 p-4 rounded-2xl card-hover cursor-pointer border-2 border-transparent hover:border-yellow-300">
+                        <div class="text-center">
+                            <i class="fas fa-tooth text-amber-600 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">金角银牙</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Search Records -->
+        <section class="mb-12">
+            <div class="bg-white rounded-3xl shadow-xl p-8">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <i class="fas fa-history text-purple-500 mr-3"></i>
+                    最近搜索记录
+                </h3>
+                
+                <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-6">
+                    <div class="flex flex-wrap gap-2 text-sm">
+                        <span class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 cursor-pointer transition-colors">死</span>
+                        <span class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-green-600 cursor-pointer transition-colors">蒙</span>
+                        <span class="bg-yellow-500 text-white px-3 py-1 rounded-full hover:bg-yellow-600 cursor-pointer transition-colors">蒙</span>
+                        <span class="bg-red-500 text-white px-3 py-1 rounded-full hover:bg-red-600 cursor-pointer transition-colors">蒙</span>
+                        <span class="bg-purple-500 text-white px-3 py-1 rounded-full hover:bg-purple-600 cursor-pointer transition-colors">过</span>
+                        <span class="bg-pink-500 text-white px-3 py-1 rounded-full hover:bg-pink-600 cursor-pointer transition-colors">功</span>
+                        <span class="bg-indigo-500 text-white px-3 py-1 rounded-full hover:bg-indigo-600 cursor-pointer transition-colors">边</span>
+                        <span class="bg-teal-500 text-white px-3 py-1 rounded-full hover:bg-teal-600 cursor-pointer transition-colors">边</span>
+                        <span class="bg-orange-500 text-white px-3 py-1 rounded-full hover:bg-orange-600 cursor-pointer transition-colors">过</span>
+                        <span class="bg-cyan-500 text-white px-3 py-1 rounded-full hover:bg-cyan-600 cursor-pointer transition-colors">项</span>
+                        <span class="bg-lime-500 text-white px-3 py-1 rounded-full hover:bg-lime-600 cursor-pointer transition-colors">庄</span>
+                        <span class="bg-emerald-500 text-white px-3 py-1 rounded-full hover:bg-emerald-600 cursor-pointer transition-colors">白</span>
+                        <span class="bg-violet-500 text-white px-3 py-1 rounded-full hover:bg-violet-600 cursor-pointer transition-colors">基</span>
+                        <span class="bg-rose-500 text-white px-3 py-1 rounded-full hover:bg-rose-600 cursor-pointer transition-colors">义</span>
+                        <span class="bg-amber-500 text-white px-3 py-1 rounded-full hover:bg-amber-600 cursor-pointer transition-colors">接</span>
+                        <span class="bg-sky-500 text-white px-3 py-1 rounded-full hover:bg-sky-600 cursor-pointer transition-colors">计</span>
+                        <span class="bg-fuchsia-500 text-white px-3 py-1 rounded-full hover:bg-fuchsia-600 cursor-pointer transition-colors">刃</span>
+                        <span class="bg-slate-500 text-white px-3 py-1 rounded-full hover:bg-slate-600 cursor-pointer transition-colors">发</span>
+                        <span class="bg-stone-500 text-white px-3 py-1 rounded-full hover:bg-stone-600 cursor-pointer transition-colors">己</span>
+                        <span class="bg-neutral-500 text-white px-3 py-1 rounded-full hover:bg-neutral-600 cursor-pointer transition-colors">手</span>
+                        <span class="bg-zinc-500 text-white px-3 py-1 rounded-full hover:bg-zinc-600 cursor-pointer transition-colors">蒙</span>
+                        <span class="bg-gray-500 text-white px-3 py-1 rounded-full hover:bg-gray-600 cursor-pointer transition-colors">芳</span>
+                        <span class="bg-red-400 text-white px-3 py-1 rounded-full hover:bg-red-500 cursor-pointer transition-colors">草</span>
+                        <span class="bg-orange-400 text-white px-3 py-1 rounded-full hover:bg-orange-500 cursor-pointer transition-colors">文</span>
+                        <span class="bg-yellow-400 text-white px-3 py-1 rounded-full hover:bg-yellow-500 cursor-pointer transition-colors">儿</span>
+                        <span class="bg-green-400 text-white px-3 py-1 rounded-full hover:bg-green-500 cursor-pointer transition-colors">以</span>
+                        <span class="bg-blue-400 text-white px-3 py-1 rounded-full hover:bg-blue-500 cursor-pointer transition-colors">从</span>
+                        <span class="bg-purple-400 text-white px-3 py-1 rounded-full hover:bg-purple-500 cursor-pointer transition-colors">页</span>
+                        <span class="bg-pink-400 text-white px-3 py-1 rounded-full hover:bg-pink-500 cursor-pointer transition-colors">贯</span>
+                        <span class="bg-indigo-400 text-white px-3 py-1 rounded-full hover:bg-indigo-500 cursor-pointer transition-colors">填</span>
+                        <span class="bg-teal-400 text-white px-3 py-1 rounded-full hover:bg-teal-500 cursor-pointer transition-colors">退</span>
+                        <span class="bg-cyan-400 text-white px-3 py-1 rounded-full hover:bg-cyan-500 cursor-pointer transition-colors">缘</span>
+                        <span class="bg-lime-400 text-white px-3 py-1 rounded-full hover:bg-lime-500 cursor-pointer transition-colors">团</span>
+                        <span class="bg-emerald-400 text-white px-3 py-1 rounded-full hover:bg-emerald-500 cursor-pointer transition-colors">富</span>
+                        <span class="bg-violet-400 text-white px-3 py-1 rounded-full hover:bg-violet-500 cursor-pointer transition-colors">友</span>
+                        <span class="bg-rose-400 text-white px-3 py-1 rounded-full hover:bg-rose-500 cursor-pointer transition-colors">伦</span>
+                        <span class="bg-amber-400 text-white px-3 py-1 rounded-full hover:bg-amber-500 cursor-pointer transition-colors">上</span>
+                        <span class="bg-sky-400 text-white px-3 py-1 rounded-full hover:bg-sky-500 cursor-pointer transition-colors">败</span>
+                        <span class="bg-fuchsia-400 text-white px-3 py-1 rounded-full hover:bg-fuchsia-500 cursor-pointer transition-colors">腊</span>
+                        <span class="bg-slate-400 text-white px-3 py-1 rounded-full hover:bg-slate-500 cursor-pointer transition-colors">军</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fun Learning Tips -->
+        <section class="mb-12">
+            <div class="bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 rounded-3xl shadow-xl p-8 text-white">
+                <div class="text-center">
+                    <div class="inline-block p-4 bg-white rounded-full mb-4">
+                        <i class="fas fa-lightbulb text-yellow-500 text-4xl bounce-animation"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">学习小贴士</h3>
+                    <p class="text-lg opacity-90 max-w-2xl mx-auto">
+                        成语接龙是一个很棒的游戏！试着从简单的成语开始，比如"一心一意"，然后找以"意"字开头的成语。
+                        记住，多练习就能成为成语小达人！
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex items-center justify-center mb-4">
+                <div class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center mr-3">
+                    <i class="fas fa-graduation-cap text-gray-800"></i>
+                </div>
+                <span class="text-lg font-semibold">智豆成语接龙</span>
+            </div>
+            <p class="text-gray-400 mb-2">© 2021-2024 成语接龙查询 所有 | 
+                <a href="#" class="text-blue-400 hover:text-blue-300 transition-colors">
+                    <i class="fas fa-certificate mr-1"></i>
+                    蜀ICP备19030164号-2
+                </a>
+            </p>
+            <p class="text-gray-500 text-sm">让学习变得更有趣，让知识伴随成长</p>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <div class="fixed bottom-8 right-8">
+        <button class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full shadow-2xl hover:from-purple-600 hover:to-pink-600 transition-all transform hover:scale-110 flex items-center justify-center">
+            <i class="fas fa-question text-xl"></i>
+        </button>
+    </div>
+
+    <!-- Decorative Elements -->
+    <div class="fixed top-20 left-10 opacity-20 pointer-events-none">
+        <i class="fas fa-star text-yellow-400 text-6xl bounce-animation"></i>
+    </div>
+    <div class="fixed top-40 right-20 opacity-20 pointer-events-none">
+        <i class="fas fa-heart text-pink-400 text-5xl" style="animation: bounce 3s infinite;"></i>
+    </div>
+    <div class="fixed bottom-40 left-20 opacity-20 pointer-events-none">
+        <i class="fas fa-rainbow text-purple-400 text-4xl" style="animation: bounce 2.5s infinite;"></i>
+    </div>
+
+    <script>
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click animation to category buttons
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+            
+            // Add search functionality
+            const searchInput = document.querySelector('input[type="text"]');
+            const searchButton = document.querySelector('button:has(.fa-search)');
+            
+            function performSearch() {
+                const query = searchInput.value.trim();
+                if (query) {
+                    // Simulate search with a fun animation
+                    searchButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>搜索中...';
+                    setTimeout(() => {
+                        searchButton.innerHTML = '<i class="fas fa-search mr-2"></i>搜索';
+                        alert(`正在搜索成语: "${query}"`);
+                    }, 1000);
+                }
+            }
+            
+            searchButton.addEventListener('click', performSearch);
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
