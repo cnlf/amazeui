@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智豆成语接龙 - 成语查询工具</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .hover-lift {
+            transition: transform 0.2s ease-in-out;
+        }
+        .hover-lift:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 min-h-screen">
+    <!-- Header Navigation -->
+    <header class="bg-white/80 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">智</span>
+                    </div>
+                    <h1 class="text-xl font-bold text-gray-900">智豆成语接龙</h1>
+                </div>
+                
+                <!-- Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">首页</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">接待查询表</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">小程序</a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <button class="md:hidden p-2 rounded-lg hover:bg-gray-100">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Hero Section -->
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">成语接龙查询</h2>
+            <p class="text-lg text-gray-600 mb-8">输入成语、汉字、拼音搜索成语，接成语游戏，提高语文成绩</p>
+            
+            <!-- Search Box -->
+            <div class="max-w-2xl mx-auto">
+                <div class="relative">
+                    <input 
+                        type="text" 
+                        placeholder="输入成语、汉字、拼音搜索..."
+                        class="w-full px-6 py-4 text-lg border-2 border-gray-200 rounded-2xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 outline-none transition-all shadow-lg"
+                    >
+                    <button class="absolute right-2 top-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-2 rounded-xl font-medium transition-colors">
+                        搜索
+                    </button>
+                </div>
+            </div>
+
+            <!-- Special Feature Button -->
+            <div class="mt-8">
+                <button class="bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white px-8 py-3 rounded-full font-bold text-lg shadow-lg hover-lift transition-all">
+                    成语接龙神器
+                    <span class="ml-2 bg-yellow-400 text-red-600 px-2 py-1 rounded-full text-xs font-bold">实用版</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Navigation Categories -->
+        <div class="mb-12">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                <span class="w-1 h-8 bg-blue-500 rounded-full mr-3"></span>
+                成语导航
+            </h3>
+            
+            <div class="grid gap-6">
+                <!-- 结构 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                        结构
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg cursor-pointer transition-colors">AABB</span>
+                        <span class="px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg cursor-pointer transition-colors">AABC</span>
+                        <span class="px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg cursor-pointer transition-colors">ABAB</span>
+                        <span class="px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg cursor-pointer transition-colors">ABAC</span>
+                        <span class="px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg cursor-pointer transition-colors">ABCB</span>
+                        <span class="px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg cursor-pointer transition-colors">ABCA</span>
+                        <span class="px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg cursor-pointer transition-colors">ABBC</span>
+                        <span class="px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg cursor-pointer transition-colors">ABCC</span>
+                    </div>
+                </div>
+
+                <!-- 四字 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                        <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                        四字
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-4 py-2 bg-green-50 hover:bg-green-100 text-green-700 rounded-lg cursor-pointer transition-colors">春天</span>
+                        <span class="px-4 py-2 bg-green-50 hover:bg-green-100 text-green-700 rounded-lg cursor-pointer transition-colors">夏天</span>
+                        <span class="px-4 py-2 bg-green-50 hover:bg-green-100 text-green-700 rounded-lg cursor-pointer transition-colors">秋天</span>
+                        <span class="px-4 py-2 bg-green-50 hover:bg-green-100 text-green-700 rounded-lg cursor-pointer transition-colors">冬天</span>
+                    </div>
+                </div>
+
+                <!-- 生肖 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                        <span class="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                        生肖
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-4 py-2 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-lg cursor-pointer transition-colors">鼠</span>
+                        <span class="px-4 py-2 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-lg cursor-pointer transition-colors">牛</span>
+                        <span class="px-4 py-2 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-lg cursor-pointer transition-colors">虎</span>
+                        <span class="px-4 py-2 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-lg cursor-pointer transition-colors">兔</span>
+                        <span class="px-4 py-2 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-lg cursor-pointer transition-colors">龙</span>
+                        <span class="px-4 py-2 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-lg cursor-pointer transition-colors">蛇</span>
+                        <span class="px-4 py-2 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-lg cursor-pointer transition-colors">马</span>
+                        <span class="px-4 py-2 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-lg cursor-pointer transition-colors">羊</span>
+                        <span class="px-4 py-2 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-lg cursor-pointer transition-colors">猴</span>
+                        <span class="px-4 py-2 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-lg cursor-pointer transition-colors">鸡</span>
+                        <span class="px-4 py-2 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-lg cursor-pointer transition-colors">狗</span>
+                        <span class="px-4 py-2 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-lg cursor-pointer transition-colors">猪</span>
+                    </div>
+                </div>
+
+                <!-- 数字 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                        <span class="w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
+                        数字
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-4 py-2 bg-orange-50 hover:bg-orange-100 text-orange-700 rounded-lg cursor-pointer transition-colors">一</span>
+                        <span class="px-4 py-2 bg-orange-50 hover:bg-orange-100 text-orange-700 rounded-lg cursor-pointer transition-colors">二</span>
+                        <span class="px-4 py-2 bg-orange-50 hover:bg-orange-100 text-orange-700 rounded-lg cursor-pointer transition-colors">三</span>
+                        <span class="px-4 py-2 bg-orange-50 hover:bg-orange-100 text-orange-700 rounded-lg cursor-pointer transition-colors">四</span>
+                        <span class="px-4 py-2 bg-orange-50 hover:bg-orange-100 text-orange-700 rounded-lg cursor-pointer transition-colors">五</span>
+                        <span class="px-4 py-2 bg-orange-50 hover:bg-orange-100 text-orange-700 rounded-lg cursor-pointer transition-colors">六</span>
+                        <span class="px-4 py-2 bg-orange-50 hover:bg-orange-100 text-orange-700 rounded-lg cursor-pointer transition-colors">七</span>
+                        <span class="px-4 py-2 bg-orange-50 hover:bg-orange-100 text-orange-700 rounded-lg cursor-pointer transition-colors">八</span>
+                        <span class="px-4 py-2 bg-orange-50 hover:bg-orange-100 text-orange-700 rounded-lg cursor-pointer transition-colors">九</span>
+                        <span class="px-4 py-2 bg-orange-50 hover:bg-orange-100 text-orange-700 rounded-lg cursor-pointer transition-colors">十</span>
+                        <span class="px-4 py-2 bg-orange-50 hover:bg-orange-100 text-orange-700 rounded-lg cursor-pointer transition-colors">百</span>
+                        <span class="px-4 py-2 bg-orange-50 hover:bg-orange-100 text-orange-700 rounded-lg cursor-pointer transition-colors">千</span>
+                        <span class="px-4 py-2 bg-orange-50 hover:bg-orange-100 text-orange-700 rounded-lg cursor-pointer transition-colors">万</span>
+                        <span class="px-4 py-2 bg-orange-50 hover:bg-orange-100 text-orange-700 rounded-lg cursor-pointer transition-colors">亿</span>
+                    </div>
+                </div>
+
+                <!-- 自然 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                        <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span>
+                        自然
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-4 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-lg cursor-pointer transition-colors">花</span>
+                        <span class="px-4 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-lg cursor-pointer transition-colors">草</span>
+                        <span class="px-4 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-lg cursor-pointer transition-colors">树</span>
+                        <span class="px-4 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-lg cursor-pointer transition-colors">木</span>
+                        <span class="px-4 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-lg cursor-pointer transition-colors">竹</span>
+                        <span class="px-4 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-lg cursor-pointer transition-colors">日</span>
+                        <span class="px-4 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-lg cursor-pointer transition-colors">月</span>
+                        <span class="px-4 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-lg cursor-pointer transition-colors">山</span>
+                        <span class="px-4 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-lg cursor-pointer transition-colors">水</span>
+                        <span class="px-4 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-lg cursor-pointer transition-colors">河</span>
+                        <span class="px-4 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-lg cursor-pointer transition-colors">海</span>
+                        <span class="px-4 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-lg cursor-pointer transition-colors">江</span>
+                        <span class="px-4 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-lg cursor-pointer transition-colors">湖</span>
+                    </div>
+                </div>
+
+                <!-- 动物 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                        <span class="w-2 h-2 bg-yellow-500 rounded-full mr-2"></span>
+                        动物
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-4 py-2 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 rounded-lg cursor-pointer transition-colors">猫</span>
+                        <span class="px-4 py-2 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 rounded-lg cursor-pointer transition-colors">鱼</span>
+                        <span class="px-4 py-2 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 rounded-lg cursor-pointer transition-colors">鸟</span>
+                        <span class="px-4 py-2 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 rounded-lg cursor-pointer transition-colors">鸡</span>
+                        <span class="px-4 py-2 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 rounded-lg cursor-pointer transition-colors">鸭</span>
+                        <span class="px-4 py-2 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 rounded-lg cursor-pointer transition-colors">鹅</span>
+                        <span class="px-4 py-2 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 rounded-lg cursor-pointer transition-colors">猪</span>
+                        <span class="px-4 py-2 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 rounded-lg cursor-pointer transition-colors">羊</span>
+                        <span class="px-4 py-2 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 rounded-lg cursor-pointer transition-colors">牛</span>
+                        <span class="px-4 py-2 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 rounded-lg cursor-pointer transition-colors">马</span>
+                        <span class="px-4 py-2 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 rounded-lg cursor-pointer transition-colors">象</span>
+                        <span class="px-4 py-2 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 rounded-lg cursor-pointer transition-colors">虎</span>
+                        <span class="px-4 py-2 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 rounded-lg cursor-pointer transition-colors">狮</span>
+                        <span class="px-4 py-2 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 rounded-lg cursor-pointer transition-colors">豹</span>
+                        <span class="px-4 py-2 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 rounded-lg cursor-pointer transition-colors">狼</span>
+                        <span class="px-4 py-2 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 rounded-lg cursor-pointer transition-colors">狗</span>
+                        <span class="px-4 py-2 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 rounded-lg cursor-pointer transition-colors">鼠</span>
+                        <span class="px-4 py-2 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 rounded-lg cursor-pointer transition-colors">兔</span>
+                        <span class="px-4 py-2 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 rounded-lg cursor-pointer transition-colors">龙</span>
+                        <span class="px-4 py-2 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 rounded-lg cursor-pointer transition-colors">蛇</span>
+                    </div>
+                </div>
+
+                <!-- 天气 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                        <span class="w-2 h-2 bg-cyan-500 rounded-full mr-2"></span>
+                        天气
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-4 py-2 bg-cyan-50 hover:bg-cyan-100 text-cyan-700 rounded-lg cursor-pointer transition-colors">风</span>
+                        <span class="px-4 py-2 bg-cyan-50 hover:bg-cyan-100 text-cyan-700 rounded-lg cursor-pointer transition-colors">雨</span>
+                        <span class="px-4 py-2 bg-cyan-50 hover:bg-cyan-100 text-cyan-700 rounded-lg cursor-pointer transition-colors">雪</span>
+                        <span class="px-4 py-2 bg-cyan-50 hover:bg-cyan-100 text-cyan-700 rounded-lg cursor-pointer transition-colors">雷</span>
+                        <span class="px-4 py-2 bg-cyan-50 hover:bg-cyan-100 text-cyan-700 rounded-lg cursor-pointer transition-colors">冰</span>
+                        <span class="px-4 py-2 bg-cyan-50 hover:bg-cyan-100 text-cyan-700 rounded-lg cursor-pointer transition-colors">霜</span>
+                        <span class="px-4 py-2 bg-cyan-50 hover:bg-cyan-100 text-cyan-700 rounded-lg cursor-pointer transition-colors">雾</span>
+                        <span class="px-4 py-2 bg-cyan-50 hover:bg-cyan-100 text-cyan-700 rounded-lg cursor-pointer transition-colors">露</span>
+                        <span class="px-4 py-2 bg-cyan-50 hover:bg-cyan-100 text-cyan-700 rounded-lg cursor-pointer transition-colors">云</span>
+                        <span class="px-4 py-2 bg-cyan-50 hover:bg-cyan-100 text-cyan-700 rounded-lg cursor-pointer transition-colors">晴</span>
+                        <span class="px-4 py-2 bg-cyan-50 hover:bg-cyan-100 text-cyan-700 rounded-lg cursor-pointer transition-colors">阴</span>
+                    </div>
+                </div>
+
+                <!-- 颜色 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                        <span class="w-2 h-2 bg-pink-500 rounded-full mr-2"></span>
+                        颜色
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-4 py-2 bg-pink-50 hover:bg-pink-100 text-pink-700 rounded-lg cursor-pointer transition-colors">红</span>
+                        <span class="px-4 py-2 bg-pink-50 hover:bg-pink-100 text-pink-700 rounded-lg cursor-pointer transition-colors">黄</span>
+                        <span class="px-4 py-2 bg-pink-50 hover:bg-pink-100 text-pink-700 rounded-lg cursor-pointer transition-colors">蓝</span>
+                        <span class="px-4 py-2 bg-pink-50 hover:bg-pink-100 text-pink-700 rounded-lg cursor-pointer transition-colors">绿</span>
+                        <span class="px-4 py-2 bg-pink-50 hover:bg-pink-100 text-pink-700 rounded-lg cursor-pointer transition-colors">紫</span>
+                        <span class="px-4 py-2 bg-pink-50 hover:bg-pink-100 text-pink-700 rounded-lg cursor-pointer transition-colors">白</span>
+                        <span class="px-4 py-2 bg-pink-50 hover:bg-pink-100 text-pink-700 rounded-lg cursor-pointer transition-colors">黑</span>
+                    </div>
+                </div>
+
+                <!-- 心情 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                        <span class="w-2 h-2 bg-rose-500 rounded-full mr-2"></span>
+                        心情
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-4 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-lg cursor-pointer transition-colors">喜</span>
+                        <span class="px-4 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-lg cursor-pointer transition-colors">怒</span>
+                        <span class="px-4 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-lg cursor-pointer transition-colors">哀</span>
+                        <span class="px-4 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-lg cursor-pointer transition-colors">乐</span>
+                        <span class="px-4 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-lg cursor-pointer transition-colors">爱</span>
+                        <span class="px-4 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-lg cursor-pointer transition-colors">恨</span>
+                        <span class="px-4 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-lg cursor-pointer transition-colors">愁</span>
+                        <span class="px-4 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-lg cursor-pointer transition-colors">忧</span>
+                        <span class="px-4 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-lg cursor-pointer transition-colors">悲</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Queries Section -->
+        <div class="grid lg:grid-cols-2 gap-8">
+            <!-- 最近查询的成语接龙 -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
+                    <span class="w-1 h-6 bg-blue-500 rounded-full mr-3"></span>
+                    最近查询的成语接龙
+                </h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    <div class="bg-gray-50 hover:bg-blue-50 border hover:border-blue-200 rounded-lg p-3 cursor-pointer transition-all hover-lift">
+                        <span class="text-gray-700 hover:text-blue-600 font-medium">下笔如神</span>
+                    </div>
+                    <div class="bg-gray-50 hover:bg-blue-50 border hover:border-blue-200 rounded-lg p-3 cursor-pointer transition-all hover-lift">
+                        <span class="text-gray-700 hover:text-blue-600 font-medium">天翻地覆</span>
+                    </div>
+                    <div class="bg-gray-50 hover:bg-blue-50 border hover:border-blue-200 rounded-lg p-3 cursor-pointer transition-all hover-lift">
+                        <span class="text-gray-700 hover:text-blue-600 font-medium">坚若磐石</span>
+                    </div>
+                    <div class="bg-gray-50 hover:bg-blue-50 border hover:border-blue-200 rounded-lg p-3 cursor-pointer transition-all hover-lift">
+                        <span class="text-gray-700 hover:text-blue-600 font-medium">群心如铁</span>
+                    </div>
+                    <div class="bg-gray-50 hover:bg-blue-50 border hover:border-blue-200 rounded-lg p-3 cursor-pointer transition-all hover-lift">
+                        <span class="text-gray-700 hover:text-blue-600 font-medium">天翻地覆</span>
+                    </div>
+                    <div class="bg-gray-50 hover:bg-blue-50 border hover:border-blue-200 rounded-lg p-3 cursor-pointer transition-all hover-lift">
+                        <span class="text-gray-700 hover:text-blue-600 font-medium">放情丘壑</span>
+                    </div>
+                    <div class="bg-gray-50 hover:bg-blue-50 border hover:border-blue-200 rounded-lg p-3 cursor-pointer transition-all hover-lift">
+                        <span class="text-gray-700 hover:text-blue-600 font-medium">析薪如流</span>
+                    </div>
+                    <div class="bg-gray-50 hover:bg-blue-50 border hover:border-blue-200 rounded-lg p-3 cursor-pointer transition-all hover-lift">
+                        <span class="text-gray-700 hover:text-blue-600 font-medium">新愁旧恨</span>
+                    </div>
+                    <div class="bg-gray-50 hover:bg-blue-50 border hover:border-blue-200 rounded-lg p-3 cursor-pointer transition-all hover-lift">
+                        <span class="text-gray-700 hover:text-blue-600 font-medium">新关旧债</span>
+                    </div>
+                    <div class="bg-gray-50 hover:bg-blue-50 border hover:border-blue-200 rounded-lg p-3 cursor-pointer transition-all hover-lift">
+                        <span class="text-gray-700 hover:text-blue-600 font-medium">深谋远虑</span>
+                    </div>
+                    <div class="bg-gray-50 hover:bg-blue-50 border hover:border-blue-200 rounded-lg p-3 cursor-pointer transition-all hover-lift">
+                        <span class="text-gray-700 hover:text-blue-600 font-medium">少见多怪</span>
+                    </div>
+                    <div class="bg-gray-50 hover:bg-blue-50 border hover:border-blue-200 rounded-lg p-3 cursor-pointer transition-all hover-lift">
+                        <span class="text-gray-700 hover:text-blue-600 font-medium">料远若近</span>
+                    </div>
+                    <div class="bg-gray-50 hover:bg-blue-50 border hover:border-blue-200 rounded-lg p-3 cursor-pointer transition-all hover-lift">
+                        <span class="text-gray-700 hover:text-blue-600 font-medium">颗粒蜂窝</span>
+                    </div>
+                    <div class="bg-gray-50 hover:bg-blue-50 border hover:border-blue-200 rounded-lg p-3 cursor-pointer transition-all hover-lift">
+                        <span class="text-gray-700 hover:text-blue-600 font-medium">料敌制胜</span>
+                    </div>
+                    <div class="bg-gray-50 hover:bg-blue-50 border hover:border-blue-200 rounded-lg p-3 cursor-pointer transition-all hover-lift">
+                        <span class="text-gray-700 hover:text-blue-600 font-medium">斗转星移</span>
+                    </div>
+                    <div class="bg-gray-50 hover:bg-blue-50 border hover:border-blue-200 rounded-lg p-3 cursor-pointer transition-all hover-lift">
+                        <span class="text-gray-700 hover:text-blue-600 font-medium">斗南一人</span>
+                    </div>
+                    <div class="bg-gray-50 hover:bg-blue-50 border hover:border-blue-200 rounded-lg p-3 cursor-pointer transition-all hover-lift">
+                        <span class="text-gray-700 hover:text-blue-600 font-medium">斗升之禄</span>
+                    </div>
+                    <div class="bg-gray-50 hover:bg-blue-50 border hover:border-blue-200 rounded-lg p-3 cursor-pointer transition-all hover-lift">
+                        <span class="text-gray-700 hover:text-blue-600 font-medium">斗水活鳞</span>
+                    </div>
+                    <div class="bg-gray-50 hover:bg-blue-50 border hover:border-blue-200 rounded-lg p-3 cursor-pointer transition-all hover-lift">
+                        <span class="text-gray-700 hover:text-blue-600 font-medium">斗升之禄</span>
+                    </div>
+                    <div class="bg-gray-50 hover:bg-blue-50 border hover:border-blue-200 rounded-lg p-3 cursor-pointer transition-all hover-lift">
+                        <span class="text-gray-700 hover:text-blue-600 font-medium">现不摸锅</span>
+                    </div>
+                    <div class="bg-gray-50 hover:bg-blue-50 border hover:border-blue-200 rounded-lg p-3 cursor-pointer transition-all hover-lift">
+                        <span class="text-gray-700 hover:text-blue-600 font-medium">拿角虎牙</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 最近搜索记录 -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
+                    <span class="w-1 h-6 bg-green-500 rounded-full mr-3"></span>
+                    最近搜索记录
+                </h3>
+                <div class="space-y-3">
+                    <div class="flex flex-wrap gap-2 text-sm">
+                        <span class="text-gray-600">死</span>
+                        <span class="text-gray-600">无</span>
+                        <span class="text-gray-600">对</span>
+                        <span class="text-gray-600">证</span>
+                        <span class="text-gray-600">遇</span>
+                        <span class="text-gray-600">至</span>
+                        <span class="text-gray-600">功</span>
+                        <span class="text-gray-600">边</span>
+                        <span class="text-gray-600">义</span>
+                        <span class="text-gray-600">技</span>
+                        <span class="text-gray-600">刀</span>
+                        <span class="text-gray-600">发</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 text-sm">
+                        <span class="text-gray-600">已</span>
+                        <span class="text-gray-600">手</span>
+                        <span class="text-gray-600">无</span>
+                        <span class="text-gray-600">芽</span>
+                        <span class="text-gray-600">至</span>
+                        <span class="text-gray-600">文</span>
+                        <span class="text-gray-600">从</span>
+                        <span class="text-gray-600">贵</span>
+                        <span class="text-gray-600">填</span>
+                        <span class="text-gray-600">连</span>
+                        <span class="text-gray-600">续</span>
+                        <span class="text-gray-600">团</span>
+                        <span class="text-gray-600">蒙</span>
+                        <span class="text-gray-600">友</span>
+                        <span class="text-gray-600">佳</span>
+                        <span class="text-gray-600">上</span>
+                        <span class="text-gray-600">敬</span>
+                        <span class="text-gray-600">腺</span>
+                        <span class="text-gray-600">军</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 text-sm">
+                        <span class="text-gray-600">颗</span>
+                        <span class="text-gray-600">松</span>
+                        <span class="text-gray-600">贞</span>
+                        <span class="text-gray-600">guang</span>
+                        <span class="text-gray-600">脱</span>
+                        <span class="text-gray-600">cao</span>
+                        <span class="text-gray-600">mao</span>
+                        <span class="text-gray-600">商</span>
+                        <span class="text-gray-600">xing</span>
+                        <span class="text-gray-600">hai</span>
+                        <span class="text-gray-600">qi</span>
+                        <span class="text-gray-600">moo</span>
+                        <span class="text-gray-600">海</span>
+                        <span class="text-gray-600">白</span>
+                        <span class="text-gray-600">问</span>
+                        <span class="text-gray-600">zi</span>
+                        <span class="text-gray-600">shang</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 text-sm">
+                        <span class="text-gray-600">man</span>
+                        <span class="text-gray-600">缘</span>
+                        <span class="text-gray-600">peng</span>
+                        <span class="text-gray-600">连</span>
+                        <span class="text-gray-600">蓝</span>
+                        <span class="text-gray-600">王</span>
+                        <span class="text-gray-600">进</span>
+                        <span class="text-gray-600">班</span>
+                        <span class="text-gray-600">蛋</span>
+                        <span class="text-gray-600">笑</span>
+                        <span class="text-gray-600">始</span>
+                        <span class="text-gray-600">脑</span>
+                        <span class="text-gray-600">象</span>
+                        <span class="text-gray-600">贵</span>
+                        <span class="text-gray-600">银</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white/80 backdrop-blur-md border-t border-gray-200/50 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center text-gray-600">
+                <p>© 2021-2024 成语接龙查询 所有 | 
+                    <a href="#" class="text-blue-600 hover:text-blue-800 transition-colors">蜀ICP备19030164号-2</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 简单的交互功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 搜索功能
+            const searchInput = document.querySelector('input[type="text"]');
+            const searchButton = document.querySelector('button');
+            
+            searchButton.addEventListener('click', function() {
+                const query = searchInput.value.trim();
+                if (query) {
+                    alert('搜索: ' + query);
+                    // 这里可以添加实际的搜索逻辑
+                }
+            });
+
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchButton.click();
+                }
+            });
+
+            // 分类标签点击
+            document.querySelectorAll('[class*="hover:bg-"][class*="rounded-lg"][class*="cursor-pointer"]').forEach(tag => {
+                tag.addEventListener('click', function() {
+                    const text = this.textContent.trim();
+                    searchInput.value = text;
+                    searchInput.focus();
+                });
+            });
+
+            // 成语接龙神器按钮
+            document.querySelector('.bg-gradient-to-r').addEventListener('click', function() {
+                alert('成语接龙神器功能即将开启！');
+            });
+        });
+    </script>
+</body>
+</html>
